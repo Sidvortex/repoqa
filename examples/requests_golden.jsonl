@@ -1,0 +1,26 @@
+# Golden set for https://github.com/psf/requests  (run from a clone: repoqa eval examples/requests_golden.jsonl -r requests)
+# Most questions deliberately avoid naming the function, the way a newcomer would ask.
+{"q": "How are redirects followed after a response with a Location header?", "expected": ["src/requests/sessions.py::SessionRedirectMixin.resolve_redirects", "src/requests/sessions.py::SessionRedirectMixin.get_redirect_target"]}
+{"q": "When is the Authorization header stripped during a redirect to another host?", "expected": ["src/requests/sessions.py::SessionRedirectMixin.should_strip_auth", "src/requests/sessions.py::SessionRedirectMixin.rebuild_auth"]}
+{"q": "Why does a POST become a GET after a 302 or 303 redirect?", "expected": ["src/requests/sessions.py::SessionRedirectMixin.rebuild_method"]}
+{"q": "Where are proxies read from environment variables like HTTPS_PROXY and NO_PROXY?", "expected": ["src/requests/utils.py::get_environ_proxies", "src/requests/utils.py::should_bypass_proxies", "src/requests/sessions.py::Session.merge_environment_settings"]}
+{"q": "How does the adapter configure retries for failed connections?", "expected": ["src/requests/adapters.py::HTTPAdapter.__init__"]}
+{"q": "How is the connection pool created and sized?", "expected": ["src/requests/adapters.py::HTTPAdapter.init_poolmanager"]}
+{"q": "How is TLS certificate verification set up, and what happens with a bad CA bundle path?", "expected": ["src/requests/adapters.py::HTTPAdapter.cert_verify"]}
+{"q": "How is the response body text decoded when the server doesn't declare a charset?", "expected": ["src/requests/models.py::Response.text", "src/requests/models.py::Response.apparent_encoding"]}
+{"q": "What does raise_for_status do for 4xx and 5xx responses?", "expected": ["src/requests/models.py::Response.raise_for_status"]}
+{"q": "How is a JSON body serialized and the content type set when sending data?", "expected": ["src/requests/models.py::PreparedRequest.prepare_body"]}
+{"q": "How are multipart file uploads encoded?", "expected": ["src/requests/models.py::RequestEncodingMixin._encode_files"]}
+{"q": "How is HTTP Digest authentication computed?", "expected": ["src/requests/auth.py::HTTPDigestAuth.build_digest_header"]}
+{"q": "How are basic auth credentials encoded into the header?", "expected": ["src/requests/auth.py::_basic_auth_str"]}
+{"q": "How does a session choose which adapter handles a URL?", "expected": ["src/requests/sessions.py::Session.get_adapter", "src/requests/sessions.py::Session.mount"]}
+{"q": "How are per-request settings merged with session-level defaults like headers?", "expected": ["src/requests/sessions.py::merge_setting", "src/requests/sessions.py::Session.prepare_request"]}
+{"q": "Where are credentials loaded from the user's .netrc file?", "expected": ["src/requests/utils.py::get_netrc_auth"]}
+{"q": "How are cookies from a response stored into the cookie jar?", "expected": ["src/requests/cookies.py::extract_cookies_to_jar"]}
+{"q": "How does streaming download iterate over the response in chunks?", "expected": ["src/requests/models.py::Response.iter_content"]}
+{"q": "How is the URL validated and IDNA-encoded before sending?", "expected": ["src/requests/models.py::PreparedRequest.prepare_url"]}
+{"q": "What header lookups are case-insensitive and how is that implemented?", "expected": ["src/requests/structures.py::CaseInsensitiveDict"]}
+{"q": "Session.send", "expected": ["src/requests/sessions.py::Session.send"]}
+{"q": "What does should_bypass_proxies check?", "expected": ["src/requests/utils.py::should_bypass_proxies"]}
+{"q": "How are response hooks dispatched?", "expected": ["src/requests/hooks.py::dispatch_hook"]}
+{"q": "How is the default User-Agent string built?", "expected": ["src/requests/utils.py::default_user_agent"]}
